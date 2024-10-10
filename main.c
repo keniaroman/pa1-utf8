@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <locale.h>
+#include <stdint.h>
+#include <string.h>
 int main(){
 
 int32_t is_ascii(char str[]){
@@ -298,6 +301,25 @@ char is_animal_emoji_at(char str[], int32_t cpi) {
     
     return 0; // It's not an animal emoji
 }
+
+setlocale(LC_ALL, "");
+
+char input[256];
+printf("Enter UTF-8 encoded string: ");
+
+printf("Valid ASCII: %s\n", is_ascii(input) ? "true" : "false");
+
+char uppercased[256];
+strcpy(uppercased, input);
+capitalize_ascii(uppercased);
+printf("Uppercased ASCII: \"%s\"\n", uppercased);
+
+printf("Length in bytes: %zu\n", strlen(input));
+
+int num_of_codepoints = utf8_strlen(input);
+printf("Number of Code Points:  %d\n", num_of_codepoints);
+
+
 
 
 }
